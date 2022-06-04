@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Анастасия Леман](https://up.htmlacademy.ru/javascript/26/user/1411351).
-* Наставник: `Неизвестно`.
+* Наставник: [Rail Sakhaviev] (https://htmlacademy.ru/profile/id1331891).
 
 ---
 
