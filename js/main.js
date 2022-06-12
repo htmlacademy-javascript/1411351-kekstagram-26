@@ -21,11 +21,10 @@ function getRandomNumbers (numberOne, numberTwo) {
 getRandomNumbers (1, 3);
 
 function checkCommentString (commentString, maxLength) {
-   if (commentString.length < maxLength) {
+  if (commentString.length < maxLength) {
     return true;
-   }
-
-   return false;
+  }
+  return false;
 }
 
 checkCommentString ('Здесь находится комментарий к фотографии', 140);
