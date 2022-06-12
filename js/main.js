@@ -1,19 +1,18 @@
 function getRandomNumbers (numberOne, numberTwo) {
   if ((numberOne || numberTwo) < 0) {
-    console.log('Выберите число больше нуля');
+    return 'Выберите число больше нуля';
   } else {
 
     if (numberTwo <= numberOne) {
-      console.log('Второе число должно быть больше первого')
+      return 'Второе число должно быть больше первого';
     } else {
 
-      if ((typeof numberOne || typeof numberTwo) != 'number') {
-        console.log('Вы ввели НЕ число')
+      if ((typeof numberOne || typeof numberTwo) !== 'number') {
+        return 'Вы ввели НЕ число';
 
       } else {
-        let result = Math.round(Math.random() * (numberTwo - numberOne) + numberOne);
+        const result = Math.round(Math.random() * (numberTwo - numberOne) + numberOne);
         // Источник: https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-        console.log(result);
         return result;
       }
     }
@@ -22,7 +21,11 @@ function getRandomNumbers (numberOne, numberTwo) {
 getRandomNumbers (1, 3);
 
 function checkCommentString (commentString, maxLength) {
-  return commentString.length < maxLength ?  true : false
+   if (commentString.length < maxLength) {
+    return true;
+   }
+
+   return false;
 }
 
-console.log(checkCommentString ('Здесь находится комментарий к фотографии', 140))
+checkCommentString ('Здесь находится комментарий к фотографии', 140);
