@@ -10,9 +10,9 @@ function getRandomPositiveInteger (a, b) {
   return Math.floor(result);
 }
 
-function checkStringLength (string, length) {
-  return string.length <= length;
-}
+// function checkStringLength (string, length) {
+//   return string.length <= length;
+// }
 
 const galery = [];
 const idPhoto = 25;
@@ -38,19 +38,18 @@ const subscribers = [
 for (let i = 0; i <= idComments - 1; i++) {
   comments[i] = {
     'id': getRandomPositiveInteger(1, 6),
-    'avatar': 'img/avatar-' + getRandomPositiveInteger(1, 6) + '.svg',
+    'avatar': 'img/avatar-' + String(getRandomPositiveInteger(1, 6)) + '.svg',
     'message': message[getRandomPositiveInteger(0, message.length - 1)],
     'name': subscribers[getRandomPositiveInteger(0, subscribers.length - 1)]
-}
+  }
 }
 
 for (let i = 0; i <= idPhoto - 1; i++) {
   galery[i] = {
     'id': i + 1,
-    'url': 'photos/' + (i + 1) + '.jpg',
+    'url': 'photos/' + String(i + 1) + '.jpg',
     'description': 'Котик моет лапки',
     'likes': getRandomPositiveInteger(15, 200),
     'comments': comments[getRandomPositiveInteger(0, comments.length - 1)]
+  }
 }
-}
-
