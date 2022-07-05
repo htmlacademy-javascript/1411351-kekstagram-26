@@ -40,4 +40,5 @@ const createPhoto = (_, index) => ({
 
 const PHOTOS_COUNT = 25;
 const gallery = Array.from({ length: PHOTOS_COUNT }, createPhoto);
-
+// eslint-disable-next-line no-console
+console.log(gallery);
