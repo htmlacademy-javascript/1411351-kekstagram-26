@@ -24,25 +24,24 @@ const subscribers = [
 let commentId = 1;
 
 const createComment = () => {
-  return ({
+  return {
     id: commentId++,
     avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
     message: messages[getRandomPositiveInteger(0, messages.length - 1)],
     name: subscribers[getRandomPositiveInteger(0, subscribers.length - 1)]
-  });
+  };
 };
 
 const createPhoto = (_, index) => {
-  return ({
+  return {
     id: index + 1,
     url: `photos/${index + 1}.jpg`,
     description: 'Котик моет лапки',
     likes: getRandomPositiveInteger(15, 200),
     comments: Array.from({ length: getRandomPositiveInteger(0, 5) }, createComment)
-  });
+  };
 };
 
 const PHOTOS_COUNT = 25;
 const gallery = Array.from({ length: PHOTOS_COUNT }, createPhoto);
 
-console.log(gallery);
