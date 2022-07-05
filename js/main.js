@@ -24,18 +24,18 @@ const subscribers = [
 let commentId = 1;
 
 const createComment = () => ({
-    id: commentId++,
-    avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
-    message: messages[getRandomPositiveInteger(0, messages.length - 1)],
-    name: subscribers[getRandomPositiveInteger(0, subscribers.length - 1)]
+  id: commentId++,
+  avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+  message: messages[getRandomPositiveInteger(0, messages.length - 1)],
+  name: subscribers[getRandomPositiveInteger(0, subscribers.length - 1)]
 });
 
 const createPhoto = (_, index) => ({
-    id: index + 1,
-    url: `photos/${index + 1}.jpg`,
-    description: 'Котик моет лапки',
-    likes: getRandomPositiveInteger(15, 200),
-    comments: Array.from({ length: getRandomPositiveInteger(0, 5) }, createComment)
+  id: index + 1,
+  url: `photos/${index + 1}.jpg`,
+  description: 'Котик моет лапки',
+  likes: getRandomPositiveInteger(15, 200),
+  comments: Array.from({ length: getRandomPositiveInteger(0, 5) }, createComment)
 });
 
 const PHOTOS_COUNT = 25;
