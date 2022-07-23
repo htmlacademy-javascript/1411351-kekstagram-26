@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git@github.com:htmlacademy-javascript/1411351-kekstagram-26.git"
   },
+  "type": "module",
   "bugs": {
     "url": "https://github.com/htmlacademy-javascript/1411351-kekstagram-26/issues"
   },
