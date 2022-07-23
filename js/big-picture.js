@@ -30,7 +30,7 @@ const openBigPicture = () => {
   bigPictureElement.classList.remove('hidden');
   document.body.classList.add('modal-open');
   closeBtnElement.addEventListener('click', closeBigPicture);
-  document.addEventListener('keydown', isEscape);
+  document.addEventListener('keydown', documentKeydownHandler);
 };
 
 // Генерация комментариев
@@ -57,7 +57,7 @@ const generateBigPicture = (pictureData) => {
   likesImageElement.textContent = pictureData.likes;
   commentsCountElement.textContent = pictureData.comments.length;
   descriptionPicture.textContent = pictureData.description;
-  generateComments(pictureData.comments, pictureData.description)
+  generateComments(pictureData.comments, pictureData.description);
 };
 
 const bigPicture = (pictureData) => {
