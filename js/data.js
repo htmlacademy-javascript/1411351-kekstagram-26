@@ -34,6 +34,8 @@ const createPhoto = (_, index) => ({
 });
 
 const PHOTOS_COUNT = 25;
+
+// Что это?
 const gallery = Array.from({ length: PHOTOS_COUNT }, createPhoto);
 
 export {gallery};
