@@ -30,7 +30,7 @@ const createPhoto = (_, index) => ({
   url: `photos/${index + 1}.jpg`,
   description: 'Котик моет лапки',
   likes: getRandomPositiveInteger(15, 200),
-  comments: Array.from({ length: getRandomPositiveInteger(0, 5) }, createComment)
+  comments: Array.from({ length: getRandomPositiveInteger(2, 25) }, createComment)
 });
 
 const PHOTOS_COUNT = 25;

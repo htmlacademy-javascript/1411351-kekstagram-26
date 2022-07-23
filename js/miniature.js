@@ -1,3 +1,5 @@
+import { bigPicture } from './big-picture.js';
+
 const picturesContainerElement = document.querySelector('.pictures');
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -21,8 +23,12 @@ const generateMiniatures = (gallery) => {
     generateMiniPicture(pictureData, miniPictureElement);
     // Генерируем фрагмент
     picturesFragment.append(miniPictureElement);
+    // Вешаем слушатель событийю
+    miniPictureElement.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      bigPicture(pictureData);
+    });
   });
-
   picturesContainerElement.append(picturesFragment);
 };
 
