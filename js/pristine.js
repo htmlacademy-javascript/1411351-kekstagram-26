@@ -11,7 +11,7 @@ const pristine = new Pristine(imgUploadForm, {
   errorTextTag: 'div'
 });
 
-const maxLengthString = (str, maxLength = 140) => str.length <= maxLength;
+const validateStringLength = (str, maxLength = 140) => str.length <= maxLength;
 
 const validateHashTagsNames = (str) => {
   if (str.length > 0) {
@@ -21,12 +21,12 @@ const validateHashTagsNames = (str) => {
   return(true);
 };
 
-const maxHashTag = (str) => {
+const validateMaxHashTags = (str) => {
   const tagsItems = str.split(' ');
   return (tagsItems.length <= 5);
 };
 
-const hashTagRepeat = (str) => {
+const validateHashTagRepeats = (str) => {
   const hashTags = str.trim().toLowerCase().split(' ');
   return !hashTags.some(
     (hash) => hashTags.indexOf(hash) !== hashTags.lastIndexOf(hash)
@@ -41,19 +41,19 @@ pristine.addValidator(
 
 pristine.addValidator(
   hashTagElement,
-  maxHashTag,
+  validateMaxHashTags,
   'Нельзя указать больше пяти хэш-тегов'
 );
 
 pristine.addValidator(
   hashTagElement,
-  hashTagRepeat,
+  validateHashTagRepeats,
   'Один и тот же хэш-тег не может быть использован дважды'
 );
 
 pristine.addValidator(
   commentElement,
-  maxLengthString,
+  validateStringLength,
   'Длина комментария не может составлять больше 140 символов'
 );
 

@@ -1,6 +1,6 @@
 import { gallery } from './data.js';
 import { generateMiniatures } from './miniature.js';
-import { formInit } from './form.js';
+import { initForm } from './form.js';
 
 generateMiniatures(gallery);
-formInit();
+initForm();

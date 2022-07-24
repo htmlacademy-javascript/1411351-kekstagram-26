@@ -1,4 +1,4 @@
-import { formValidation } from './form-validation.js';
+import { formValidation as validateForm } from './form-validation.js';
 import { pristine } from './pristine.js';
 
 // Элементы
@@ -23,14 +23,14 @@ const documentKeydownHandler = (evt) => {
   }
 };
 
-function onFocus(evt) {
+function focusAddBlurHandler(evt) {
   evt.target.classList.add('_focus-element');
-  evt.target.addEventListener('blur', onBlur);
+  evt.target.addEventListener('blur', focusRemoveBlurHandler);
 }
 
-function onBlur(evt) {
+function focusRemoveBlurHandler(evt) {
   evt.target.classList.remove('_focus-element');
-  evt.target.removeEventListener('blur', onBlur);
+  evt.target.removeEventListener('blur', focusRemoveBlurHandler);
 }
 
 function closeForm() {
@@ -39,9 +39,9 @@ function closeForm() {
   pristine.reset();
   closeBtnElement.removeEventListener('click', closeForm);
   document.removeEventListener('keydown', documentKeydownHandler);
-  imgUploadForm.removeEventListener('submit', formValidation);
-  hashTagElement.removeEventListener('focus', onFocus);
-  commentElement.removeEventListener('focus', onFocus);
+  imgUploadForm.removeEventListener('submit', validateForm);
+  hashTagElement.removeEventListener('focus', focusAddBlurHandler);
+  commentElement.removeEventListener('focus', focusAddBlurHandler);
   uploadInputElement.value = '';
 }
 
@@ -51,14 +51,14 @@ const openForm = () => {
   body.classList.add('modal-open');
   closeBtnElement.addEventListener('click', closeForm);
   document.addEventListener('keydown', documentKeydownHandler);
-  imgUploadForm.addEventListener('submit', formValidation);
-  hashTagElement.addEventListener('focus', onFocus);
-  commentElement.addEventListener('focus', onFocus);
+  imgUploadForm.addEventListener('submit', validateForm);
+  hashTagElement.addEventListener('focus', focusAddBlurHandler);
+  commentElement.addEventListener('focus', focusAddBlurHandler);
 };
 
-const formInit = () => {
+const initForm = () => {
   // При событии change у инпута #upload-file вызывается функция openForm
   uploadInputElement.addEventListener('change', openForm);
 };
 
-export { formInit };
+export { initForm };
