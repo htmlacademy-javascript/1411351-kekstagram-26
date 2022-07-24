@@ -1,10 +1,9 @@
-import { formValidation as validateForm } from './form-validation.js';
 import { pristine } from './pristine.js';
 
 // Элементы
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const imgUploadForm = document.querySelector('#upload-select-image');
-const closeBtnElement = imgUploadOverlay.querySelector('#upload-cancel');
+const closeButtonElement = imgUploadOverlay.querySelector('#upload-cancel');
 const body = document.querySelector('body');
 const uploadInputElement = document.querySelector('#upload-file');
 const hashTagElement = imgUploadForm.querySelector('.text__hashtags');
@@ -18,7 +17,7 @@ const documentKeydownHandler = (evt) => {
     if (isFocus()) {
       evt.preventDefault();
     } else {
-      closeForm(evt);
+      closeButtonClickHandler(evt);
     }
   }
 };
@@ -33,32 +32,39 @@ function focusRemoveBlurHandler(evt) {
   evt.target.removeEventListener('blur', focusRemoveBlurHandler);
 }
 
-function closeForm() {
+const formSubmitHandler = (evt) => {
+  if (!pristine.validate()) {
+    evt.preventDefault();
+    // alert('Форма заполнена неверно');
+  }
+};
+
+function closeButtonClickHandler() {
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   pristine.reset();
-  closeBtnElement.removeEventListener('click', closeForm);
+  closeButtonElement.removeEventListener('click', closeButtonClickHandler);
   document.removeEventListener('keydown', documentKeydownHandler);
-  imgUploadForm.removeEventListener('submit', validateForm);
+  imgUploadForm.removeEventListener('submit', formSubmitHandler);
   hashTagElement.removeEventListener('focus', focusAddBlurHandler);
   commentElement.removeEventListener('focus', focusAddBlurHandler);
   uploadInputElement.value = '';
 }
 
-const openForm = () => {
+const uploadInputChangeHandler = () => {
   // .img-upload__overlay удаляется класс hidden, а body задаётся класс modal-open
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  closeBtnElement.addEventListener('click', closeForm);
+  closeButtonElement.addEventListener('click', closeButtonClickHandler);
   document.addEventListener('keydown', documentKeydownHandler);
-  imgUploadForm.addEventListener('submit', validateForm);
+  imgUploadForm.addEventListener('submit', formSubmitHandler);
   hashTagElement.addEventListener('focus', focusAddBlurHandler);
   commentElement.addEventListener('focus', focusAddBlurHandler);
 };
 
 const initForm = () => {
   // При событии change у инпута #upload-file вызывается функция openForm
-  uploadInputElement.addEventListener('change', openForm);
+  uploadInputElement.addEventListener('change', uploadInputChangeHandler);
 };
 
 export { initForm };

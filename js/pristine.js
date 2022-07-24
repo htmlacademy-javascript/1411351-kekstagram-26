@@ -15,16 +15,12 @@ const validateStringLength = (str, maxLength = 140) => str.length <= maxLength;
 
 const validateHashTagsNames = (str) => {
   if (str.length > 0) {
-    const tagsArray = str.split(' ');
-    return(tagsArray.every((hashTag) => /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/.test(hashTag)));
+    return (str.split(' ').every((hashTag) => /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/.test(hashTag)));
   }
-  return(true);
+  return false;
 };
 
-const validateMaxHashTags = (str) => {
-  const tagsItems = str.split(' ');
-  return (tagsItems.length <= 5);
-};
+const validateMaxHashTags = (str) => str.split(' ').length <= 5;
 
 const validateHashTagRepeats = (str) => {
   const hashTags = str.trim().toLowerCase().split(' ');
