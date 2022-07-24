@@ -8,13 +8,13 @@ const commentContainer = bigPictureElement.querySelector('ul.social__comments');
 const commentTemplate = commentContainer.children[0].cloneNode(true);
 const closeBtnElement = bigPictureElement.querySelector('.big-picture__cancel');
 
-
 // Функция проверки Esc
 const documentKeydownHandler = (evt) => {
   if (evt.code === 'Escape') {
     closeBigPicture(evt);
   }
 };
+
 // Закрытие bigPicture
 function closeBigPicture(evt) {
   evt.preventDefault();
@@ -23,7 +23,6 @@ function closeBigPicture(evt) {
   closeBtnElement.removeEventListener('click', closeBigPicture);
   document.removeEventListener('keydown', documentKeydownHandler);
 }
-
 
 // Открытие bigPicture
 const openBigPicture = () => {
