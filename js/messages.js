@@ -41,7 +41,6 @@ const openErrorMessageModal = () => {
   document.addEventListener('keydown', errorModalEscKeyHandler);
 };
 
-
 function closeErrorMessageModal() {
   const modal = document.querySelector('.error');
   modal.remove();
