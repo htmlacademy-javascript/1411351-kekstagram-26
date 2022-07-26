@@ -1,4 +1,5 @@
 const ERROR_MESSAGE_TIME = 3000;
+const DEFAULT_DEBOUNCE_DELAY = 500;
 
 const showLoadErrorMessage = (message) => {
   const errorMessageElement = document.createElement('div');
@@ -22,4 +23,26 @@ const showLoadErrorMessage = (message) => {
   }, ERROR_MESSAGE_TIME);
 };
 
-export { showLoadErrorMessage };
+function debounce(callback, timeoutDelay = DEFAULT_DEBOUNCE_DELAY) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+const shuffle = (array) => {
+  let currentIndex = array.length, randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+};
+
+export { showLoadErrorMessage, debounce, shuffle };
