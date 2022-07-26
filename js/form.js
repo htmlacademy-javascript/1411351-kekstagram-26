@@ -1,9 +1,13 @@
 import { pristine } from './pristine.js';
 import {destroyPhotoEffectsSlider, initPhotoEffectsSlider} from './effects.js';
+import {sendData} from './api.js';
+import {openErrorMessageModal, openSuccessMessageModal} from './messages.js';
 
 const SCALE_CHANGE_STEP = 25;
 const SCALE_VALUE_MIN = 25;
 const SCALE_VALUE_MAX = 100;
+
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 // Элементы
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
@@ -12,6 +16,7 @@ const closeButtonElement = imgUploadOverlay.querySelector('#upload-cancel');
 const uploadInputElement = document.querySelector('#upload-file');
 const hashTagElement = imgUploadForm.querySelector('.text__hashtags');
 const commentElement = imgUploadForm.querySelector('.text__description');
+const photoUploadButton = imgUploadForm.querySelector('#upload-submit');
 
 const imageUploadPreviewElement = imgUploadForm.querySelector('.img-upload__preview img');
 const buttonSmallerElement = imgUploadForm.querySelector('.scale__control--smaller');
@@ -45,13 +50,29 @@ function focusRemoveBlurHandler(evt) {
 
 const formSubmitHandler = (evt) => {
   evt.preventDefault();
-  if (!pristine.validate()) {
-    // eslint-disable-next-line no-console
-    console.log('send data');
+  if (pristine.validate()) {
+    photoUploadButton.disabled = true;
+    sendData(
+      () => {
+        closeModal();
+        photoUploadButton.disabled = false;
+        openSuccessMessageModal();
+      },
+      () => {
+        closeModal();
+        photoUploadButton.disabled = false;
+        openErrorMessageModal();
+      },
+      new FormData(evt.target),
+    );
   }
 };
 
 function closeButtonClickHandler() {
+  closeModal();
+}
+
+function closeModal() {
   destroyPhotoEffectsSlider();
 
   imgUploadOverlay.classList.add('hidden');
@@ -67,6 +88,15 @@ function closeButtonClickHandler() {
 
 const uploadInputChangeHandler = () => {
   initPhotoEffectsSlider();
+
+  const file = uploadInputElement.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    imageUploadPreviewElement.src = URL.createObjectURL(file);
+  }
 
   imgUploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -98,7 +128,6 @@ const scaleIncreaseClickHandler = () => {
 const initForm = () => {
   // При событии change у инпута #upload-file вызывается функция openForm
   uploadInputElement.addEventListener('change', uploadInputChangeHandler);
-
   scaleControlValueElement.value = `${scaleValue}%`;
   buttonSmallerElement.addEventListener('click', scaleDecreaseClickHandler);
   buttonBiggerElement.addEventListener('click', scaleIncreaseClickHandler);
