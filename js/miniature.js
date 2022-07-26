@@ -13,6 +13,8 @@ const generateMiniPicture = (pictureData, miniPictureElement) => {
 };
 
 const generateMiniatures = (gallery) => {
+  picturesContainerElement.querySelectorAll('.picture').forEach((item) => item.remove());
+
   const picturesFragment = document.createDocumentFragment();
 
   // Gallery - 25 Array
