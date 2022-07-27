@@ -2,7 +2,6 @@ const imgUploadForm = document.querySelector('.img-upload__overlay');
 const hashTagElement = imgUploadForm.querySelector('.text__hashtags');
 const commentElement = imgUploadForm.querySelector('.text__description');
 
-// Подключение Pristine
 const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorClass: 'img-upload__item--invalid',

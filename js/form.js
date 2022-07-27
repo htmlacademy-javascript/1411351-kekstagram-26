@@ -9,7 +9,6 @@ const SCALE_VALUE_MAX = 100;
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
-// Элементы
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const imgUploadForm = document.querySelector('#upload-select-image');
 const closeButtonElement = imgUploadOverlay.querySelector('#upload-cancel');
@@ -17,7 +16,6 @@ const uploadInputElement = document.querySelector('#upload-file');
 const hashTagElement = imgUploadForm.querySelector('.text__hashtags');
 const commentElement = imgUploadForm.querySelector('.text__description');
 const photoUploadButton = imgUploadForm.querySelector('#upload-submit');
-
 const imageUploadPreviewElement = imgUploadForm.querySelector('.img-upload__preview img');
 const buttonSmallerElement = imgUploadForm.querySelector('.scale__control--smaller');
 const buttonBiggerElement = imgUploadForm.querySelector('.scale__control--bigger');
@@ -27,7 +25,6 @@ let scaleValue = SCALE_VALUE_MAX;
 
 const isFocus = () => hashTagElement.classList.contains('_focus-element') || commentElement.classList.contains('_focus-element');
 
-// Функция проверки Esc
 const documentKeydownHandler = (evt) => {
   if (evt.code === 'Escape') {
     if (isFocus()) {
@@ -108,7 +105,6 @@ const uploadInputChangeHandler = () => {
   imageUploadPreviewElement.style.transform = `scale(${scaleValue / 100})`;
 };
 
-
 const scaleDecreaseClickHandler = () => {
   if (scaleValue > SCALE_VALUE_MIN) {
     scaleValue -= SCALE_CHANGE_STEP;
@@ -126,7 +122,6 @@ const scaleIncreaseClickHandler = () => {
 };
 
 const initForm = () => {
-  // При событии change у инпута #upload-file вызывается функция openForm
   uploadInputElement.addEventListener('change', uploadInputChangeHandler);
   scaleControlValueElement.value = `${scaleValue}%`;
   buttonSmallerElement.addEventListener('click', scaleDecreaseClickHandler);
