@@ -4,7 +4,7 @@ const FETCH_DATA_URL = 'https://26.javascript.pages.academy/kekstagram/data';
 const SEND_DATA_URL = 'https://26.javascript.pages.academy/kekstagram';
 const LOAD_ERROR_MESSAGE = 'При загрузке данных с сервера произошла ошибка.';
 
-const fetchData = (onSuccess) => {
+const getData = (onSuccess) => {
   fetch(FETCH_DATA_URL)
     .then((response) => response.json())
     .then((photos) => {
@@ -35,4 +35,4 @@ const sendData = (onSuccess, onFail, body) => {
     });
 };
 
-export { fetchData, sendData };
+export { getData, sendData };
