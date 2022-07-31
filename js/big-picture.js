@@ -1,3 +1,5 @@
+import {ESCAPE_KEYCODE} from './util.js';
+
 const UPLOAD_COMMENTS_STEP = 5;
 const bigPictureElement = document.querySelector('.big-picture');
 const imageElement = bigPictureElement.querySelector('.big-picture__img > img');
@@ -15,7 +17,7 @@ let comments = [];
 let commentCountEnd = UPLOAD_COMMENTS_STEP;
 
 const documentKeydownHandler = (evt) => {
-  if (evt.code === 'Escape') {
+  if (evt.code === ESCAPE_KEYCODE) {
     closeBigPicture(evt);
   }
 };

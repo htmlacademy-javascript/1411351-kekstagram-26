@@ -1,4 +1,4 @@
-const ESCAPE_KEYCODE = 'Escape';
+import {ESCAPE_KEYCODE} from './util.js';
 
 const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
