@@ -2,6 +2,7 @@ import { pristine } from './pristine.js';
 import {destroyPhotoEffectsSlider, initPhotoEffectsSlider} from './effects.js';
 import {sendData} from './api.js';
 import {openErrorMessageModal, openSuccessMessageModal} from './messages.js';
+import {ESCAPE_KEYCODE} from './util.js';
 
 const SCALE_CHANGE_STEP = 25;
 const SCALE_VALUE_MIN = 25;
@@ -26,7 +27,7 @@ let scaleValue = SCALE_VALUE_MAX;
 const isFocus = () => hashTagElement.classList.contains('_focus-element') || commentElement.classList.contains('_focus-element');
 
 const documentKeydownHandler = (evt) => {
-  if (evt.code === 'Escape') {
+  if (evt.code === ESCAPE_KEYCODE) {
     if (isFocus()) {
       evt.preventDefault();
     } else {

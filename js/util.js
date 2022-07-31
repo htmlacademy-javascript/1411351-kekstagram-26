@@ -1,3 +1,5 @@
+export const ESCAPE_KEYCODE = 'Escape';
+
 const ERROR_MESSAGE_TIME = 3000;
 const DEFAULT_DEBOUNCE_DELAY = 500;
 
