@@ -72,6 +72,11 @@ function closeButtonClickHandler() {
 function closeModal() {
   destroyPhotoEffectsSlider();
 
+  scaleValue = SCALE_VALUE_MAX;
+  scaleControlValueElement.value = `${scaleValue}%`;
+  hashTagElement.value = '';
+  commentElement.value = '';
+
   imgUploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   pristine.reset();
@@ -126,7 +131,6 @@ const initForm = () => {
   scaleControlValueElement.value = `${scaleValue}%`;
   buttonSmallerElement.addEventListener('click', scaleDecreaseClickHandler);
   buttonBiggerElement.addEventListener('click', scaleIncreaseClickHandler);
-
 };
 
 export { initForm };

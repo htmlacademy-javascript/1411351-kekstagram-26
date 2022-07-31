@@ -54,6 +54,7 @@ const sliderElement = effectLevelElement.querySelector('.effect-level__slider');
 const effectsLevelValueElement = effectLevelElement.querySelector('.effect-level__value');
 const effectInputs = document.querySelectorAll('.effects__radio');
 const imageUploadPreviewElement = document.querySelector('.img-upload__preview img');
+const effectNone = document.querySelector('#effect-none');
 
 let currentEffect = effects.NONE;
 let currentEffectName;
@@ -113,6 +114,7 @@ const initPhotoEffectsSlider = () => {
 };
 
 const destroyPhotoEffectsSlider = () => {
+  effectNone.click();
   sliderElement.noUiSlider.destroy();
   effectInputs.forEach((item) => {
     item.removeEventListener('change', effectChangeHandler);
